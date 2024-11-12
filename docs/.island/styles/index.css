@@ -1,0 +1,7 @@
+/* Inject global style */
+:root {
+  --island-c-brand: #023367;
+  --island-c-brand-light: #023367;
+  --island-c-brand-dark: #2c5d92;
+  --island-c-brand-darker: #023367;
+}
