@@ -1,8 +1,10 @@
 import { DefaultTheme, defineConfig } from "islandjs";
 
 export default defineConfig({
-  lang: "en",
-  title: "Fusionpay Doc",
+  lang: "fr",
+  title: "Fusionpay - la documentation api pour les développeurs",
+  description:
+    "Simplifiez le traitement de vos paiements avec l'integration de Fusion Pay dans votre site e-commerce et/ou votre application mobile",
   icon: "/logo.png",
   vite: {
     plugins: [],
