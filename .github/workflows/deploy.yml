@@ -1,37 +1,36 @@
 on:
-    push:
-      branches:
-        - main
-  name: 🚀 Deploy website on push
-  jobs:
-    web-deploy:
-      name: 🎉 Deploy
-      runs-on: ubuntu-latest
-      steps:
-        - name: 🚚 Get latest code
-          uses: actions/checkout@v4
-  
-        # Install Node.js
-        - name: 📦 Set up Node.js
-          uses: actions/setup-node@v3
-          with:
-            node-version: '18'  # Specify the version you need
-  
-        # Install dependencies
-        - name: 📥 Install dependencies
-          run: npm install
-  
-        # Run build script
-        - name: 🛠️ Build project
-          run: npm run build
-  
-        # Sync files
-        - name: 📂 Sync files
-          uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-          with:
-            server: ${{ secrets.ftp_host }}
-            username: ${{ secrets.ftp_username }}
-            password: ${{ secrets.ftp_password }}
-            server-dir: /docs/
-            local-dir: ./docs/.island/dist/
-  
+  push:
+    branches:
+      - main
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      # Install Node.js
+      - name: 📦 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18" # Specify the version you need
+
+      # Install dependencies
+      - name: 📥 Install dependencies
+        run: npm install
+
+      # Run build script
+      - name: 🛠️ Build project
+        run: npm run build
+
+      # Sync files
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.ftp_host }}
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          server-dir: /docs/
+          local-dir: ./docs/.island/dist/
