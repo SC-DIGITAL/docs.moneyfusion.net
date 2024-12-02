@@ -27,8 +27,8 @@ Ces informations sont nécessaires à des fins de vérification.
 
 ### Étape 2 : Accès au compte
 
-1. Connectez-vous à votre compte
-2. Cliquez sur « Fusion Pay » dans le menu de gauche.
+1. Connectez-vous à [votre compte](https://moneyfusion.net/dashboard)
+2. Cliquez sur ["Fusion Pay"](https://moneyfusion.net/dashboard/fusionpay) dans le menu de gauche.
 
 ### Étape 3 : Création d'une application
 

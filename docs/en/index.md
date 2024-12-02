@@ -27,8 +27,8 @@ This information is necessary for verification purposes.
 
 ### Step 2: Account Access
 
-1. Log into your account
-2. Click on "Fusion Pay" in the left menu
+1. Log into [your account](https://moneyfusion.net/dashboard)
+2. Click on ["Fusion Pay"](https://moneyfusion.net/dashboard/fusionpay) in the left menu
 
 ### Step 3: Application Creation
 
