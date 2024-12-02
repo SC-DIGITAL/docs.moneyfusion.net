@@ -22,7 +22,7 @@ This information is necessary for verification purposes.
 
 ### Step 1: Account Setup
 
-- Ensure you have an activated Money Fusion account
+- Ensure you have a Money Fusion account
 - Create one if needed
 
 ### Step 2: Account Access

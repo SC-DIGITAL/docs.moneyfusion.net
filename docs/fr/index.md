@@ -22,7 +22,7 @@ Ces informations sont nécessaires à des fins de vérification.
 
 ### Étape 1 : Configuration du compte
 
-- Assurez-vous d'avoir un compte Money Fusion activé
+- Assurez-vous d'avoir un compte Money Fusion
 - Créez-en un si nécessaire
 
 ### Étape 2 : Accès au compte
