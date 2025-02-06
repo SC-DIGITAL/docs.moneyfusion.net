@@ -90,6 +90,10 @@ function getSidebar(lang: "fr" | "en"): DefaultTheme.Sidebar {
             text: getText("Wordpress", "Wordpress"),
             link: getLink("/wordpress"),
           },
+          {
+            text: getText("Python", "Python"),
+            link: getLink("/python"),
+          },
         ],
       },
     ],
