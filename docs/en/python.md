@@ -81,11 +81,4 @@ Expected response :
 }
 ```
 
-## Contributions
-
-Contributions are welcome! Feel free to suggest improvements or report bugs by opening an issue on GitHub.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more information.
 

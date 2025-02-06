@@ -81,11 +81,4 @@ Réponse attendue :
 }
 ```
 
-## Contributions
-
-Les contributions sont les bienvenues ! N'hésitez pas à proposer des améliorations ou signaler des bugs en ouvrant une issue sur GitHub.
-
-## Licence
-
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus d'informations.
 
