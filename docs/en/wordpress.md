@@ -65,6 +65,12 @@ Customers can now select Fusion Pay as a payment option during checkout.
 
 ![form](https://raw.githubusercontent.com/Yaya12085/wp-fusionpay/refs/heads/main/assets/screenshot-4.png)
 
+### The Fusion Pay payment option is not visible?
+
+If the payment option is not visible, go to the payment page and enter `[woocommerce_checkout]` in the shortcut section for more information:
+
+[![Watch the video](https://img.youtube.com/vi/sfYauEEO7S0/0.jpg)](https://www.youtube.com/watch?v=sfYauEEO7S0)
+
 :::danger{title="Good to know"}
 Make sure that the currency is in CFA Franc and that the amount is 200 minimum so that all works without any problem.
 :::

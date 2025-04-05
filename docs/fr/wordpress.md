@@ -65,6 +65,12 @@ Les clients peuvent désormais sélectionner Fusion Pay comme option de paiement
 
 ![formulaire](https://raw.githubusercontent.com/Yaya12085/wp-fusionpay/refs/heads/main/assets/screenshot-4.png)
 
+### L'option de paiement Fusion Pay n'est pas visible ?
+
+Si le moyen de paiement ne s'affiche pas, allez modifier la page de paiement en entrant. `[woocommerce_checkout]` dans la section shortcut: Pour plus d'info:
+
+[![Regarder la vidéo](https://img.youtube.com/vi/sfYauEEO7S0/0.jpg)](https://www.youtube.com/watch?v=sfYauEEO7S0)
+
 :::danger{title="Bon à savoir"}
 Assurez-vous que la devise est en Franc CFA et que le montant est de 200 minimum pour que tout fonctionne sans problème.
 :::
