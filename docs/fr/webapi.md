@@ -44,21 +44,21 @@ const paymentData = {
   numeroSend: " 01010101 ",
   nomclient: " John Doe ",
   return_url: " https://your-domain.com/callback ",
-  webhook_url: "https://your-domain.com/my-webhook-url",
+  webhook_url: "https://your-domain.com/my-webhook-url", // Le webhook doit accepter les requêtes POST pour recevoir les données.
 };
 ```
 
 ### Champs
 
-| Champ           | Type            | Description                                          | Exemple                                  | Exigé |
-| --------------- | --------------- | ---------------------------------------------------- | ---------------------------------------- | ----- |
-| `totalPrice`    | Number          | Montant total à payer                                | 200                                      | Oui   |
-| `article`       | `Array<Object>` | Liste des articles avec leur prix                    | `[{"sac": 100, "chaussure": 100}]`       | Oui   |
-| `numeroSend`    | String          | Numéro de téléphone du client                        | "01010101"                               | Oui   |
-| `nomclient`     | String          | Nom du client                                        | "John Doe"                               | Oui   |
-| `personal_Info` | `Array<Object>` | Autres informations personnelles                     | `[{"userId": 1, "orderId": 123}]`        | Non   |
-| `return_url`    | String          | url à rediriger après le paiement                    | `https://your-domain.com/callback`       | Non   |
-| `webhook_url`   | String          | url où seront renvoyés les détails de la transaction | `https://your-domain.com/my-webhook-url` | Non   |
+| Champ           | Type            | Description                                                    | Exemple                                  | Exigé |
+| --------------- | --------------- | -------------------------------------------------------------- | ---------------------------------------- | ----- |
+| `totalPrice`    | Number          | Montant total à payer                                          | 200                                      | Oui   |
+| `article`       | `Array<Object>` | Liste des articles avec leur prix                              | `[{"sac": 100, "chaussure": 100}]`       | Oui   |
+| `numeroSend`    | String          | Numéro de téléphone du client                                  | "01010101"                               | Oui   |
+| `nomclient`     | String          | Nom du client                                                  | "John Doe"                               | Oui   |
+| `personal_Info` | `Array<Object>` | Autres informations personnelles                               | `[{"userId": 1, "orderId": 123}]`        | Non   |
+| `return_url`    | String          | url à rediriger après le paiement                              | `https://your-domain.com/callback`       | Non   |
+| `webhook_url`   | String          | url (POST) de où seront renvoyés les détails de la transaction | `https://your-domain.com/my-webhook-url` | Non   |
 
 ### Exemple de réponse
 
@@ -166,7 +166,7 @@ const checkPaymentStatus = async (token) => {
   "numeroSend": "01010101",
   "nomclient": "Kwameson",
   "numeroTransaction": "01010101",
-  "montant": 194,
+  "Montant": 194,
   "frais": 6,
   "return_url": " https://your-domain.com/callback ",
   "webhook_url": "https://your-domain.com/my-webhook-url",
@@ -188,9 +188,9 @@ const checkPaymentStatus = async (token) => {
 
 Il est possible que moneyfusion envoie **plusieurs notifications** pour une même transaction, notamment dans les cas suivants :
 
-- 🔄 Répétition de l’événement `payin.session.pending` pendant la phase de traitement.
-- ✅ Envoi de l’événement `payin.session.completed` après confirmation du paiement.
-- ❌ Éventuel `payin.session.cancelled` en cas d’échec ou d’annulation.
+- Répétition de l’événement `payin.session.pending` pendant la phase de traitement.
+- Envoi de l’événement `payin.session.completed` après confirmation du paiement.
+- Éventuel `payin.session.cancelled` en cas d’échec ou d’annulation.
 
 ### Recommandations de traitement
 
