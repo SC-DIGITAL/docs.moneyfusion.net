@@ -1,53 +1,26 @@
-# Wordpress plugin: The flexible way to use
+# Fusion Pay Payment Gateway
 
-You can use the wordpress plugin to receive payments from your wordpress and woocommerce store.
+![banner](https://raw.githubusercontent.com/Yaya12085/wp-fusionpay/refs/heads/main/assets/banner.png)
+
+## Description
+
+Fusion Pay WooCommerce Payment Gateway is a custom WordPress plugin that allows you to integrate the MoneyFusion payment system into your WooCommerce WordPress website.
 
 ## Features
 
 - Easy installation and setup
-- Customizable API settings
-- Ability to define articles and total price
-- Multilingual support (English and French)
-- Shortcode for embedding payment form
-- Dynamic handling of articles in the payment form
-- WooCommerce integration for seamless e-commerce payments
+- Secure payment processing through MoneyFusion
+- Customizable payment gateway settings
+- Real-time payment status updates via webhooks
+- Detailed transaction logging and debug options
+- Custom order statuses for better payment tracking
+- Complete WooCommerce integration for seamless e-commerce payments
 
 ## Installation
 
 1. Download the plugin from the [this link](https://docs.moneyfusion.net/fusionpay.zip).
-2. Upload the `fusionpay` folder to the `/wp-content/plugins/` directory.
+2. Install it or upload the `fusionpay` folder to the `/wp-content/plugins/` directory.
 3. Activate the plugin through the 'Plugins' menu in WordPress.
-4. Navigate to the "Fusion Pay" settings page in the admin dashboard to configure your API and payment settings.
-
-## Configuration
-
-After activating the plugin, follow these steps to configure it:
-
-1. Go to the **Fusion Pay** menu in the WordPress admin panel.
-2. Fill in the **API URL** and **Return URL**.
-3. Add articles with their names and prices.
-4. Set the **Total Price** and choose whether to display articles and total price on the payment form.
-5. Select the form language (English or French).
-6. If using WooCommerce, enable the WooCommerce integration in the settings.
-7. Save your settings.
-
-#### preview
-
-![panel](https://raw.githubusercontent.com/Yaya12085/wp-fusionpay/refs/heads/main/assets/screenshot-1.png)
-
-## Shortcode Usage
-
-To display the payment form on a page or post, use the following shortcode:
-
-```plaintext
-[fusion_pay_form]
-```
-
-This will render the payment form with fields for the customer's name and phone number, along with the articles and total price if configured to display.
-
-#### preview
-
-![form](https://raw.githubusercontent.com/Yaya12085/wp-fusionpay/refs/heads/main/assets/screenshot-2.png)
 
 ## WooCommerce Integration
 
@@ -58,18 +31,50 @@ To use Fusion Pay with WooCommerce:
 3. Enable "Fusion Pay" as a payment method.
    ![woocommerce-fusionpay-activation](https://raw.githubusercontent.com/Yaya12085/wp-fusionpay/refs/heads/main/assets/woo-activation.png)
 
-4. Click "Manage" next to Fusion Pay to configure additional settings.
+4. Click "Manage" next to Fusion Pay to configure the gateway settings:
+
+   - **Enable/Disable**: Activate or deactivate the payment method
+   - **Title**: Customize how the payment method appears to customers (default: "Fusion Pay")
+   - **Description**: Provide information about this payment method to your customers
+   - **API URL**: Enter your unique Fusion Pay API URL (create an app on [moneyfusion](https://moneyfusion.net/dashboard/fusionpay) to get the url)
+   - **Return URL**: URL where customers will be redirected after payment
+   - **Webhook URL**: URL you need to configure to receive payment notifications.
+   - **Debug Log**: Enable for troubleshooting payment issues. Found on `https://your-site.com/wp-admin/admin.php?page=wc-status&tab=logs` and source `fusion-pay`
+
    ![form](https://raw.githubusercontent.com/Yaya12085/wp-fusionpay/refs/heads/main/assets/screenshot-3.png)
+
+5. Save your settings and the payment gateway will be available at checkout.
 
 Customers can now select Fusion Pay as a payment option during checkout.
 
 ![form](https://raw.githubusercontent.com/Yaya12085/wp-fusionpay/refs/heads/main/assets/screenshot-4.png)
 
-### The Fusion Pay payment option is not visible?
+## Payment Status Handling
 
-If the payment option is not visible, go to the payment page and enter `[woocommerce_checkout]` in the shortcut section for more information:
+The plugin automatically handles the following payment statuses from MoneyFusion:
 
-[![Watch the video](https://img.youtube.com/vi/sfYauEEO7S0/0.jpg)](https://www.youtube.com/watch?v=sfYauEEO7S0)
+- **paid** - Payment successful (order marked as completed)
+- **pending** - Payment is being processed (order marked as processing)
+- **failure** - Payment failed (order marked as failed)
+- **no paid** - Payment not completed (order marked as on-hold)
+
+## Webhook Integration
+
+For automatic order status updates, leave the webhook endpoint in the woocommerce dashboard:
+
+- Webhook URL: `https://your-site.com/wc-api/wc_fusion_pay_gateway`
+
+This ensures your WooCommerce store automatically receives payment status updates.
+
+## Troubleshooting
+
+If you encounter issues with the gateway:
+
+1. Enable Debug Log in the gateway settings
+2. Check the WooCommerce system status logs for any errors
+3. Verify your API URL is correctly entered
+4. If the payment option is not visible, go to the payment page and enter `[woocommerce_checkout]` in the shortcut section for more information:
+   [![Watch the video](https://img.youtube.com/vi/sfYauEEO7S0/0.jpg)](https://www.youtube.com/watch?v=sfYauEEO7S0)
 
 :::danger{title="Good to know"}
 Make sure that the currency is in CFA Franc and that the amount is 200 minimum so that all works without any problem.
