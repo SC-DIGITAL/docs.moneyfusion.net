@@ -75,27 +75,31 @@ function getSidebar(lang: "fr" | "en"): DefaultTheme.Sidebar {
           },
         ],
       },
-      {
-        text: getText("Doc", "Doc"),
-        items: [
           {
-            text: getText("Web api", "Web api"),
-            link: getLink("/webapi"),
+              text: getText("Doc", "Doc"),
+              items: [
+                  {
+                      text: getText("Web api", "Web api"),
+                      link: getLink("/webapi"),
+                  },
+                  {
+                      text: getText("Nodejs / npm", "Nodejs / npm"),
+                      link: getLink("/nodejs"),
+                  },
+                  {
+                      text: getText("Wordpress", "Wordpress"),
+                      link: getLink("/wordpress"),
+                  },
+                  {
+                      text: getText("Python", "Python"),
+                      link: getLink("/python"),
+                  },
+                  {
+                      text: getText("C# / .NET", "C# / .NET"),
+                      link: getLink("/dotnet"),
+                  },
+              ],
           },
-          {
-            text: getText("Nodejs / npm", "Nodejs / npm"),
-            link: getLink("/nodejs"),
-          },
-          {
-            text: getText("Wordpress", "Wordpress"),
-            link: getLink("/wordpress"),
-          },
-          {
-            text: getText("Python", "Python"),
-            link: getLink("/python"),
-          },
-        ],
-      },
     ],
   };
 }
