@@ -1,0 +1,147 @@
+---
+title: Intégration API Fusion pay en C# (.NET)
+description: Guide complet pour intégrer l'API Fusion pay avec .NET et MAUI
+---
+
+# Intégration API Fusion pay avec .NET / MAUI
+
+Ce guide vous montre comment intégrer l’API de paiement de Money Fusion dans une application .NET, que ce soit côté **backend (ASP.NET Core)** ou **frontend (MAUI mobile)**.
+
+## 🔧 Côté Backend (ASP.NET Core)
+
+### 1. Créez un modèle de requête `FusionPayRequest`
+
+```csharp
+public class FusionPayRequest
+{
+    public decimal totalPrice { get; set; }
+    public Article[] article { get; set; }
+    public PersonalInfo[] personal_Info { get; set; }
+    public string numeroSend { get; set; }
+    public string nomclient { get; set; }
+    public string return_url { get; set; }
+    public string webhook_url { get; set; }
+}
+```
+
+### 2. Exemple d’endpoint pour initier un paiement
+
+```csharp
+[HttpPost("initiate/{ArticleId}")]
+public async Task<IActionResult> InitiateFusionPay(string ArticleId)
+{
+    var payload = new FusionPayRequest
+    {
+        totalPrice = 1000,
+        article = new[] { new Article { nom = "Nom de l'article", montant = 1000 } },
+        personal_Info = new[] { new PersonalInfo { userId = "utilisateur123", orderId = "article123" } },
+        numeroSend = "01010101",
+        nomclient = "Client Test",
+        return_url = "https://votreapp.com/PageDeRemerciement",
+        webhook_url = "https://votreapp.com/votre/WebHook"
+    };
+
+    var client = _httpClientFactory.CreateClient("FusionPay");
+    var response = await client.PostAsJsonAsync("MonApp/cléidentifiant/pay/", payload);
+    var result = await response.Content.ReadFromJsonAsync<FusionPayResponse>();
+    return Ok(new { checkoutUrl = result.url });
+}
+```
+
+## 📱 Côté Frontend (MAUI)
+
+### 1. Ouvrir une WebView avec l’URL du paiement
+
+```csharp
+PaymentWebView.Source = "https://fusionpay.url/vers/checkout";
+```
+
+### 2. Capturer la redirection après paiement réussi
+
+```csharp
+if (e.Url.StartsWith("VotreUrl://personnalisé", StringComparison.OrdinalIgnoreCase))
+{
+    await Shell.Current.GoToAsync("//PageDeRedirection");
+}
+```
+
+## ✅ Résultat
+
+- Le paiement est initié via Money Fusion.
+- L'utilisateur est redirigé automatiquement vers votre app.
+- Le webhook vous notifie de la réussite.
+
+## 🎯 Exemple de Webhook (confirmation de paiement)
+
+Lorsque FusionPay reçoit un paiement, il envoie une requête HTTP POST à votre endpoint `fusionpay-webhook`. Voici comment le gérer côté backend en .NET :
+
+### 🎯 Exemple de code C# (.NET) pour le Webhook
+
+```csharp
+[AllowAnonymous]
+[HttpPost("fusionpay-webhook")]
+public async Task<IActionResult> HandleFusionPayWebhook([FromBody] FusionPayWebhook payload)
+{
+    Debug.WriteLine($"[FusionPay] Webhook reçu – Token: {payload.tokenPay}, Statut: {payload.statut}");
+
+    if (payload.personal_Info == null || payload.personal_Info.Length == 0)
+        return BadRequest(new { Message = "Données invalides." });
+
+    var transactionId = payload.tokenPay;
+    var userId = payload.personal_Info[0].userId;
+    var articleId = payload.personal_Info[0].orderId;
+
+    var alreadyProcessed = await _context.PurchasedArticles
+        .AnyAsync(p => p.TransactionId == transactionId);
+
+    if (alreadyProcessed)
+        return Ok(new { Message = "Déjà traité" });
+
+    if (payload.statut == "paid")
+    {
+        var article = await _context.Articles.FindAsync(aricleId);
+        if (article == null)
+            return NotFound("Article non trouvé");
+
+        var purchase = new PurchasedArticle
+        {
+            UserId = userId,
+            ArticleId = articleId,
+            TransactionId = transactionId,
+            PurchaseDate = DateTime.UtcNow,
+            Title = article.Title,
+            Price = article.Price,
+            Description = article.Description,
+        };
+
+        _context.PurchasedArticles.Add(purchase);
+
+        var pending = await _context.PendingPayments
+            .FirstOrDefaultAsync(p => p.TransactionId == transactionId);
+
+        if (pending != null)
+            pending.IsCompleted = true;
+
+        await _context.SaveChangesAsync();
+
+        return Ok(new { Message = "Paiement confirmé et livre ajouté." });
+    }
+
+    return BadRequest(new { Message = "Paiement non accepté", payload.statut });
+}
+```
+
+### 📦 Exemple de données reçues (JSON)
+
+```json
+{
+  "tokenPay": "ABC123456",
+  "statut": "paid",
+  "personal_Info": [
+    {
+      "userId": "UTILISATEUR123",
+      "orderId": "LIVRE456"
+    }
+  ]
+}
+```
