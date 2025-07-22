@@ -51,23 +51,23 @@ Content-Type: application/json
 
 Voici les valeurs supportées pour les champs `withdraw_mode` et `countryCode` :
 
-| `withdraw_mode`     | `countryCode` | Pays          |
-| ------------------- | ------------- | ------------- |
-| `orange-money-ci`   | `ci`          | Côte d'Ivoire |
-| `mtn-ci`            | `ci`          | Côte d'Ivoire |
-| `moov-ci`           | `ci`          | Côte d'Ivoire |
-| `wave-ci`           | `ci`          | Côte d'Ivoire |
-| `orange-money-sn`   | `sn`          | Sénégal       |
-| `free-money-sn`     | `sn`          | Sénégal       |
-| `wave-sn`           | `sn`          | Sénégal       |
-| `expresso-senegal`  | `sn`          | Sénégal       |
-| `orange-money-bf`   | `bf`          | Burkina Faso  |
-| `moov-burkina-faso` | `bf`          | Burkina Faso  |
-| `mtn-bj`            | `bj`          | Bénin         |
-| `moov-benin`        | `bj`          | Bénin         |
-| `t-money-togo`      | `tg`          | Togo          |
-| `moov-togo`         | `tg`          | Togo          |
-| `orange-money-mali` | `ml`          | Mali          |
+| `withdraw_mode`        | `countryCode` | Pays          |
+| ---------------------- | ------------- | ------------- |
+| `orange-money-ci`      | `ci`          | Côte d'Ivoire |
+| `mtn-ci`               | `ci`          | Côte d'Ivoire |
+| `moov-ci`              | `ci`          | Côte d'Ivoire |
+| `wave-ci`              | `ci`          | Côte d'Ivoire |
+| `orange-money-senegal` | `sn`          | Sénégal       |
+| `free-money-senegal`   | `sn`          | Sénégal       |
+| `wave-senegal`         | `sn`          | Sénégal       |
+| `expresso-senegal`     | `sn`          | Sénégal       |
+| `orange-money-burkina` | `bf`          | Burkina Faso  |
+| `moov-burkina-faso`    | `bf`          | Burkina Faso  |
+| `mtn-benin`            | `bj`          | Bénin         |
+| `moov-benin`           | `bj`          | Bénin         |
+| `t-money-togo`         | `tg`          | Togo          |
+| `moov-togo`            | `tg`          | Togo          |
+| `orange-money-mali`    | `ml`          | Mali          |
 
 ---
 
