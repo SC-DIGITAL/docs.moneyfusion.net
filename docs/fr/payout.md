@@ -51,23 +51,14 @@ Content-Type: application/json
 
 Voici les valeurs supportées pour les champs `withdraw_mode` et `countryCode` :
 
-| `withdraw_mode`        | `countryCode` | Pays          |
-| ---------------------- | ------------- | ------------- |
-| `orange-money-ci`      | `ci`          | Côte d'Ivoire |
-| `mtn-ci`               | `ci`          | Côte d'Ivoire |
-| `moov-ci`              | `ci`          | Côte d'Ivoire |
-| `wave-ci`              | `ci`          | Côte d'Ivoire |
-| `orange-money-senegal` | `sn`          | Sénégal       |
-| `free-money-senegal`   | `sn`          | Sénégal       |
-| `wave-senegal`         | `sn`          | Sénégal       |
-| `expresso-senegal`     | `sn`          | Sénégal       |
-| `orange-money-burkina` | `bf`          | Burkina Faso  |
-| `moov-burkina-faso`    | `bf`          | Burkina Faso  |
-| `mtn-benin`            | `bj`          | Bénin         |
-| `moov-benin`           | `bj`          | Bénin         |
-| `t-money-togo`         | `tg`          | Togo          |
-| `moov-togo`            | `tg`          | Togo          |
-| `orange-money-mali`    | `ml`          | Mali          |
+| Country       | `countryCode` | `withdraw_mode`                                                                     |
+| ------------- | ------------- | ----------------------------------------------------------------------------------- |
+| Côte d'Ivoire | `ci`          | `orange-money-ci` / `mtn-ci` / `moov-ci` / `wave-ci`                                |
+| Senegal       | `sn`          | `orange-money-senegal` / `free-money-senegal` / `wave-senegal` / `expresso-senegal` |
+| Burkina Faso  | `bf`          | `orange-money-burkina` / `moov-burkina-faso`                                        |
+| Benin         | `bj`          | `mtn-benin` / `moov-benin`                                                          |
+| Togo          | `tg`          | `t-money-togo` / `moov-togo`                                                        |
+| Mali          | `ml`          | `orange-money-mali`                                                                 |
 
 ---
 
