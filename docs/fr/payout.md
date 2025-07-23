@@ -15,7 +15,7 @@ Avant de faire une requête de retrait, vous devez (Allez dans la section **Para
 3. Inclure cette clé API dans l’en-tête des requêtes HTTP :
 
 ```md
-Authorization: Bearer VOTRE_CLE_API
+moneyfusion-private-key: VOTRE_CLE_API
 Content-Type: application/json
 ```
 

@@ -15,7 +15,7 @@ Before making a withdrawal request, you must (go to the **Settings** section):
 3. Include this API key in the HTTP request headers:
 
 ```md
-Authorization: Bearer YOUR_API_KEY
+moneyfusion-private-key: YOUR_API_KEY
 Content-Type: application/json
 ```
 
