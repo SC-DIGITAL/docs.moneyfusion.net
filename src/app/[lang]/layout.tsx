@@ -12,16 +12,25 @@ const inter = Inter({
 // translations
 const fr: Partial<Translations> = {
   search: "Rechercher",
+  searchNoResult: "Aucun résultat",
+  toc: "Table des matieres",
+  tocNoHeadings: "Aucun titre",
+  lastUpdate: "Dernière mise à jour",
+  chooseLanguage: "Choisir une langue",
+  nextPage: "Page suivante",
+  previousPage: "Page precedente",
+  chooseTheme: "Choisir un thème",
+  editOnGithub: "Editer sur Github",
 };
 
 const locales = [
   {
-    name: "English",
-    locale: "en",
-  },
-  {
     name: "Français",
     locale: "fr",
+  },
+  {
+    name: "English",
+    locale: "en",
   },
 ];
 
