@@ -2,35 +2,53 @@ on:
   push:
     branches:
       - main
-name: 🚀 Deploy website on push
+
+name: 🚀 Deploy docs on push
 jobs:
-  web-deploy:
+  landing-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      # Install Node.js
-      - name: 📦 Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: "18" # Specify the version you need
+          version: 9
 
-      # Install dependencies
-      - name: 📥 Install dependencies
-        run: npm install
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-      # Run build script
-      - name: 🛠️ Build project
-        run: npm run build
+      - name: 🔨 Install dependencies and 📦 build
+        run: |
+          pnpm install
+          pnpm build
 
-      # Sync files
-      - name: 📂 Sync files
+      - name: Prepare deployment directory
+        run: |
+          mkdir -p build/tmp
+          cp -r .next build/.next
+          cp -r public build/public
+          cp package.json build/
+          cp pnpm-lock.yaml build/
+          cp server.js build/
+          cp next.config.mjs build/
+          echo "Passenger restart triggered at $(date)" > ./build/tmp/restart.txt
+
+      - name: Debug deployment directory
+        run: ls -la ./build/
+
+      - name: Deploy to FTP server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.ftp_host }}
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
+          local-dir: ./build/
           server-dir: /docs/
-          local-dir: ./docs/.island/dist/
