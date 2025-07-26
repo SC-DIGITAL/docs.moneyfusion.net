@@ -3,6 +3,8 @@ title: Get started
 description: Simplify your payment processing with Fusion Pay integration
 ---
 
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
 <Callout title="Important">
   Please read all sections thoroughly to understand the documentation.
 </Callout>
@@ -19,19 +21,35 @@ This information is necessary for verification purposes.
 
 ## Getting Started
 
-### Step 1: Account Setup
+<Steps>
+<Step>
+### Account Setup
 
 - Ensure you have a Money Fusion account
-- Create one if needed
+- [Create one](https://moneyfusion.net/login?tab=signup) if needed
 
-### Step 2: Account Access
+</Step>
 
-1. Log into [your account](https://moneyfusion.net/dashboard)
-2. Click on ["Fusion Pay"](https://moneyfusion.net/dashboard/fusionpay) in the left menu
+<Step>
+### Account Access
 
-### Step 3: Application Creation
+<Steps>
+  <Step>Log into [your account](https://moneyfusion.net/dashboard)</Step>
+  <Step>
+    Click on ["Fusion Pay"](https://moneyfusion.net/dashboard/fusionpay) in the
+    left menu
+  </Step>
+</Steps>
+
+</Step>
+
+<Step>
+### Application Creation
 
 Once you create an application, an API link will be generated that can be implemented across multiple sites and applications.
+
+ </Step>
+</Steps>
 
 ## Next Steps
 

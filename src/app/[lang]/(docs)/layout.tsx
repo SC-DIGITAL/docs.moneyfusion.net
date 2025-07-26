@@ -1,7 +1,7 @@
-import { DocsLayout } from "fumadocs-ui/layouts/docs";
-import type { ReactNode } from "react";
 import { baseOptions } from "@/app/layout.config";
 import { source } from "@/lib/source";
+import { DocsLayout } from "fumadocs-ui/layouts/notebook";
+import type { ReactNode } from "react";
 
 export default async function Layout({
   params,
@@ -13,7 +13,12 @@ export default async function Layout({
   const { lang } = await params;
 
   return (
-    <DocsLayout {...baseOptions(lang)} tree={source.pageTree[lang]}>
+    <DocsLayout
+      {...baseOptions(lang)}
+      tree={source.pageTree[lang]}
+      tabMode="navbar"
+      nav={{ ...baseOptions(lang).nav, mode: "top" }}
+    >
       {children}
     </DocsLayout>
   );
