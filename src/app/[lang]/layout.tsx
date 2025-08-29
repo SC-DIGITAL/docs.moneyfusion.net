@@ -1,6 +1,6 @@
 import "@/app/global.css";
 import { i18n } from "@/lib/i18n";
-import { defineI18nUI, Translations } from "fumadocs-ui/i18n";
+import { defineI18nUI } from "fumadocs-ui/i18n";
 import { RootProvider } from "fumadocs-ui/provider";
 import { Inter } from "next/font/google";
 import { Metadata } from "next/types";
@@ -9,31 +9,6 @@ import type { ReactNode } from "react";
 const inter = Inter({
   subsets: ["latin"],
 });
-
-// translations
-const fr: Partial<Translations> = {
-  search: "Rechercher",
-  searchNoResult: "Aucun résultat",
-  toc: "Table des matieres",
-  tocNoHeadings: "Aucun titre",
-  lastUpdate: "Dernière mise à jour",
-  chooseLanguage: "Choisir une langue",
-  nextPage: "Page suivante",
-  previousPage: "Page precedente",
-  chooseTheme: "Choisir un thème",
-  editOnGithub: "Editer sur Github",
-};
-
-const locales = [
-  {
-    name: "Français",
-    locale: "fr",
-  },
-  {
-    name: "English",
-    locale: "en",
-  },
-];
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://docs.moneyfusion.net`),
