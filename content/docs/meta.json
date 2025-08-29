@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "pages": [
+    "index",
+    "---PAYIN---",
+    "webapi",
+    "nodejs",
+    "wordpress",
+    "python",
+    "...",
+    "---PAYOUT---",
+    "payout"
+  ]
+}

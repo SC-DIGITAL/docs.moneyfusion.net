@@ -1,8 +1,9 @@
 import "@/app/global.css";
-import { Translations } from "fumadocs-ui/i18n";
+import { i18n } from "@/lib/i18n";
+import { defineI18nUI, Translations } from "fumadocs-ui/i18n";
 import { RootProvider } from "fumadocs-ui/provider";
-import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Metadata } from "next/types";
 import type { ReactNode } from "react";
 
 const inter = Inter({
@@ -80,6 +81,27 @@ export const metadata: Metadata = {
   keywords: [""],
 };
 
+const { provider } = defineI18nUI(i18n, {
+  translations: {
+    en: {
+      displayName: "English",
+    },
+    fr: {
+      displayName: "Français",
+      search: "Rechercher",
+      searchNoResult: "Aucun résultat",
+      toc: "Table des matieres",
+      tocNoHeadings: "Aucun titre",
+      lastUpdate: "Dernière mise à jour",
+      chooseLanguage: "Choisir une langue",
+      nextPage: "Page suivante",
+      previousPage: "Page precedente",
+      chooseTheme: "Choisir un thème",
+      editOnGithub: "Editer sur Github",
+    },
+  },
+});
+
 export default async function Layout({
   params,
   children,
@@ -91,16 +113,8 @@ export default async function Layout({
 
   return (
     <html lang={lang} className={inter.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
-        <RootProvider
-          i18n={{
-            locale: lang,
-            locales,
-            translations: { fr }[lang],
-          }}
-        >
-          {children}
-        </RootProvider>
+      <body className="flex flex-col min-h-screen" suppressHydrationWarning>
+        <RootProvider i18n={provider(lang)}>{children}</RootProvider>
       </body>
     </html>
   );
