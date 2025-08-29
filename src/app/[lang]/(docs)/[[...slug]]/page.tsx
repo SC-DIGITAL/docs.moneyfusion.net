@@ -26,7 +26,7 @@ export default async function Page({
       toc={page.data.toc}
       full={page.data.full}
       tableOfContent={{
-        style: "clerk",
+        style: "normal",
       }}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
