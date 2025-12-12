@@ -51,4 +51,4 @@ jobs:
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
           local-dir: ./build/
-          server-dir: /docs/
+          server-dir: /docs.moneyfusion.net/
