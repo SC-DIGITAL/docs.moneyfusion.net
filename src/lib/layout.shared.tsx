@@ -6,6 +6,7 @@ export function baseOptions(_locale: string): BaseLayoutProps {
     i18n,
     githubUrl: "https://github.com/sc-digital",
     nav: {
+      transparentMode: "none",
       title: <>FusionPay</>,
     },
     links: [],
