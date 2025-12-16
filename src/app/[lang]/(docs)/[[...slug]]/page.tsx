@@ -1,4 +1,4 @@
-import { source } from "@/lib/source";
+import { getPageImage, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import {
@@ -7,24 +7,24 @@ import {
   DocsPage,
   DocsTitle,
 } from "fumadocs-ui/page";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ lang: string; slug?: string[] }>;
-}) {
-  const { slug, lang } = await params;
+export default async function Page(props: PageProps<"/[lang]/[[...slug]]">) {
+
+  const params = await props.params;
+
+  const { slug, lang } = params;
 
   const page = source.getPage(slug, lang);
+
   if (!page) notFound();
 
-  const MDXContent = page.data.body;
+  const MDX = page.data.body;
 
   return (
     <DocsPage
-      toc={page.data.toc}
-      full={page.data.full}
+      toc={page.data.toc} full={page.data.full}
       tableOfContent={{
         style: "normal",
       }}
@@ -32,7 +32,7 @@ export default async function Page({
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDXContent
+        <MDX
           components={getMDXComponents({
             // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
@@ -49,22 +49,23 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ lang: string; slug?: string[] }>;
-}) {
+}: PageProps<"/[lang]/[[...slug]]">): Promise<Metadata> {
+
   const { slug = [], lang } = await params;
+
   const page = source.getPage(slug, lang);
+
   if (!page) notFound();
-  const image = ["/docs-og", ...slug, "image.png"].join("/");
+
   return {
     title: page.data.title,
     description: page.data.description,
     openGraph: {
-      images: image,
+      images: getPageImage(page).url,
     },
     twitter: {
       card: "summary_large_image",
-      images: image,
+      images: getPageImage(page).url,
     },
   };
 }

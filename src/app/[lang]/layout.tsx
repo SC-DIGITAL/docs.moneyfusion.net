@@ -1,13 +1,12 @@
 import "@/app/global.css";
 import { i18n } from "@/lib/i18n";
 import { defineI18nUI } from "fumadocs-ui/i18n";
-import { RootProvider } from "fumadocs-ui/provider";
+import { RootProvider } from "fumadocs-ui/provider/next";
 import { Inter } from "next/font/google";
 import { Metadata } from "next/types";
-import type { ReactNode } from "react";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 export const metadata: Metadata = {
@@ -34,14 +33,14 @@ export const metadata: Metadata = {
       "Simplifiez le traitement de vos paiements avec l'integration de Fusion Pay dans votre site e-commerce et/ou votre application mobile",
     url: "https://docs.moneyfusion.net",
     siteName: "Fusionpay - la documentation api pour les développeurs",
-    images: [{ url: "/hero.png" }],
+    images: [{ url: "/logo.png" }],
     locale: "fr_CI",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     creator: "@conhouinnovationgroup",
-    images: [{ url: "/hero.png" }],
+    images: [{ url: "/logo.png" }],
     description:
       "Simplifiez le traitement de vos paiements avec l'integration de Fusion Pay dans votre site e-commerce et/ou votre application mobile",
     title: "Fusionpay - la documentation api pour les développeurs",
@@ -80,10 +79,7 @@ const { provider } = defineI18nUI(i18n, {
 export default async function Layout({
   params,
   children,
-}: {
-  params: Promise<{ lang: string }>;
-  children: ReactNode;
-}) {
+}: LayoutProps<"/[lang]">) {
   const lang = (await params).lang;
 
   return (
