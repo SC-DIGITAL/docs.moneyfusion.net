@@ -6,6 +6,9 @@
 .content-collections
 .source
 
+/.idea/
+/.vscode/
+
 # test & build
 /coverage
 /.next/
