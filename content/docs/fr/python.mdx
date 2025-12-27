@@ -22,7 +22,7 @@ from apiMoneyFusion import PaymentClient
 ### Initialisation du client
 
 ```python
-client = PaymentClient(api_key_url="https://api.moneyfusion.net")
+client = PaymentClient(api_key_url="YOUR_API_URL")
 ```
 
 ### Créer un paiement
@@ -35,11 +35,13 @@ payment = client.create_payment(
     nom_client="assemienDev",
     user_id=1,
     order_id=123,
-    return_url="https://votre-domaine.com/callback"
+    return_url="https://votre-domaine.com/callback",
+    webhook_url="https://your-domain.com/my-webhook-url",
 )
 
 print(payment)
 ```
+NB: webhook_url doit accepter les requêtes POST
 
 Réponse attendue :
 
@@ -48,7 +50,7 @@ Réponse attendue :
   "statut": true,
   "token": "f5EJ33JYmxqosi8BvaEt",
   "message": "paiement en cours",
-  "url": "https://payin.moneyfusion.net/payment/f5EJ33JYmxqosi8BvaEt/10000/John Doe"
+  "url": "https://www.pay.moneyfusion.net/pay/f5EJ33JYmxqosi8BvaE"
 }
 ```
 
