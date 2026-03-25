@@ -1,0 +1,84 @@
+---
+title: Custom Domain
+description: This guide shows you how to connect your domain to MoneyFusion.
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+
+<Callout type="info">
+To use your custom domain, you need to configure your DNS records to point to our server.
+</Callout>
+
+<Steps>
+<Step>
+
+### Access DNS Management
+
+Log in to your domain provider (GoDaddy, Namecheap, OVH, etc.), then open:
+
+> **DNS Management**
+
+</Step>
+
+<Step>
+### Add DNS Records
+
+You must add **two required DNS records**:
+
+| Type  | Name (Host) | Value          |
+|-------|------------|-----------------|
+| A     | @          | 66.29.149.126   |
+| CNAME | www        | moneyfusion.net |
+
+### Explanation
+
+- **A (@)** → connects your root domain (`yourdomain.com`) to our server  
+- **CNAME (www)** → redirects `www.yourdomain.com` to your root domain  
+
+<Callout type="warning">
+Remove any existing <strong>@</strong> and <strong>www</strong> records before adding the new ones.
+</Callout>
+</Step>
+<Step>
+### Wait for DNS Propagation
+
+<Callout type="info">
+DNS propagation can take from a few minutes up to <strong>24 hours</strong>, and in some cases up to <strong>48 hours</strong>.
+</Callout>
+
+
+### External Verification
+
+👉 https://dnschecker.org
+
+</Step>
+<Step>
+
+### Verify and Add Your Domain
+
+1. Log in to your **MoneyFusion** dashboard  
+2. Edit your store  
+3. Enter your domain (`yourdomain.com`)  
+4. Save the updates
+
+</Step>
+</Steps>
+
+## Result
+
+- ✅ Domain validated  
+- ✅ Automatically connected to your store  
+
+<Callout type="success">
+The system automatically checks that your domain points to <strong>66.29.149.126</strong>.
+</Callout>
+
+---
+
+## Common Issues
+
+- Incorrect IP address in the **A record**  
+- Missing or incorrect **CNAME www**  
+- Conflict with existing DNS records  
+- DNS propagation not completed
