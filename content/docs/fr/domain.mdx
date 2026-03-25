@@ -2,26 +2,30 @@
 title: Domaine personalisé
 description: Ce guide vous montre comment connecter  votre domaine à MoneyFusion.
 ---
+import { Step, Steps } from "fumadocs-ui/components/steps";
 
 <Callout type="info">
 Pour utiliser votre domaine personnalisé, vous devez configurer vos enregistrements DNS afin de le relier à notre serveur.
 </Callout>
 
----
 
-## Étape 1 : Accéder à la gestion DNS
+<Steps>
+<Step>
+
+### Accéder à la gestion DNS
 
 Connectez-vous à votre fournisseur de domaine (GoDaddy, Namecheap, OVH, etc.), puis ouvrez la section :
 
 > **Gestion DNS / DNS Management**
 
----
+</Step>
+<Step>
 
-## Étape 2 : Ajouter les enregistrements DNS
+### Étape 2 : Ajouter les enregistrements DNS
 
 Vous devez ajouter **deux enregistrements DNS** obligatoires :
 
-| Type  | Nom (Host) | Valeur          |
+| Type  | Nom (Host) | Valeur         |
 |-------|-----------|-----------------|
 | A     | @         | 66.29.149.126   |
 | CNAME | www       | moneyfusion.net |
@@ -35,30 +39,33 @@ Vous devez ajouter **deux enregistrements DNS** obligatoires :
 Supprimez tous les anciens enregistrements <strong>@</strong> et <strong>www</strong> avant d’ajouter les nouveaux.
 </Callout>
 
----
 
-## Étape 3 : Attendre la propagation DNS
+</Step>
+<Step>
+
+### Attendre la propagation DNS
 
 <Callout type="info">
 La propagation DNS peut prendre de quelques minutes à <strong>24 heures</strong> voire même jusqu’à <strong> 48 heures </strong> dans certains cas.
 </Callout>
 
----
 
-## Vérification externe
+### Vérification externe
 
 👉 https://dnschecker.org
 
----
+</Step>
+<Step>
 
-## Étape 4 : Vérifier et ajouter votre domaine
+### Vérifier et ajouter votre domaine
 
 1. Connectez-vous à votre espace **MoneyFusion**
-2. Accédez à **Ajouter un domaine**
+2. Modifier votre boutique
 3. Entrez votre domaine (`mondomaine.com`)
-4. Cliquez sur **"Vérifier mon domaine"**
+4. Enregistez les modifications
 
----
+</Step>
+</Steps>
 
 ## Résultat
 

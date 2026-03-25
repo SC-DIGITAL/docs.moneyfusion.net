@@ -8,6 +8,8 @@
     "python",
     "...",
     "---PAYOUT---",
-    "payout"
+    "payout",
+    "---OTHER---",
+    "domain"
   ]
 }

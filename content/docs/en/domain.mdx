@@ -3,25 +3,30 @@ title: Custom Domain
 description: This guide shows you how to connect your domain to MoneyFusion.
 ---
 
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+
 <Callout type="info">
 To use your custom domain, you need to configure your DNS records to point to our server.
 </Callout>
 
----
+<Steps>
+<Step>
 
-## Step 1: Access DNS Management
+### Access DNS Management
 
 Log in to your domain provider (GoDaddy, Namecheap, OVH, etc.), then open:
 
 > **DNS Management**
 
----
+</Step>
 
-## Step 2: Add DNS Records
+<Step>
+### Add DNS Records
 
 You must add **two required DNS records**:
 
-| Type  | Name (Host) | Value           |
+| Type  | Name (Host) | Value          |
 |-------|------------|-----------------|
 | A     | @          | 66.29.149.126   |
 | CNAME | www        | moneyfusion.net |
@@ -34,31 +39,31 @@ You must add **two required DNS records**:
 <Callout type="warning">
 Remove any existing <strong>@</strong> and <strong>www</strong> records before adding the new ones.
 </Callout>
-
----
-
-## Step 3: Wait for DNS Propagation
+</Step>
+<Step>
+### Wait for DNS Propagation
 
 <Callout type="info">
 DNS propagation can take from a few minutes up to <strong>24 hours</strong>, and in some cases up to <strong>48 hours</strong>.
 </Callout>
 
----
 
-## External Verification
+### External Verification
 
 👉 https://dnschecker.org
 
----
+</Step>
+<Step>
 
-## Step 4: Verify and Add Your Domain
+### Verify and Add Your Domain
 
 1. Log in to your **MoneyFusion** dashboard  
-2. Go to **Add Domain**  
+2. Edit your store  
 3. Enter your domain (`yourdomain.com`)  
-4. Click **"Verify my domain"**
+4. Save the updates
 
----
+</Step>
+</Steps>
 
 ## Result
 
