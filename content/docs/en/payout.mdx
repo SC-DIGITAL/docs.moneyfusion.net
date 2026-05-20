@@ -79,36 +79,37 @@ This token ensures traceability and security of the withdrawal process.
 
 ---
 
-## Supported Withdrawal Methods (`withdraw_mode`)
+## Supported withdrawal methods (`withdraw_mode`)
 
-Here are the supported values for `withdraw_mode` and `countryCode`:
+The available values for `withdraw_mode` and `countryCode` are returned dynamically via:
 
-| Country           | `countryCode` | `withdraw_mode`                                                                     |
-| ----------------- | ------------- | ----------------------------------------------------------------------------------- |
-| Côte d'Ivoire     | `ci`          | `orange-money-ci` / `mtn-ci` / `moov-ci` / `wave-ci`                                |
-| Senegal           | `sn`          | `orange-money-senegal` / `free-money-senegal` / `wave-senegal` / `expresso-senegal` |
-| Burkina Faso      | `bf`          | `orange-money-burkina` / `moov-burkina-faso`                                        |
-| Benin             | `bj`          | `mtn-benin` / `moov-benin`                                                          |
-| Togo              | `tg`          | `t-money-togo` / `moov-togo`                                                        |
-| Mali              | `ml`          | `orange-money-mali`                                                                 |
-| Congo Brazzaville | `cg`          | `orange-money-mali` / `mtn-cg`                                                      |
-| Cameroun          | `cm`          | `orange-money-cm` / `mtn-cm`                                                        |
-| Congo RDC         | `cd`          | `airtel-money-cd`                                                                   |
-| Gabon             | `ga`          | `airtel-money-ga` / `libertis-ga`                                                   |
-| Ghana             | `gh`          | `airtel-money-gh` / `mtn-gh` / `vodafone-gh`                                        |
-| Guinée Conakry    | `gn`          | `orange-gn` / `mtn-gn`                                                              |
-| Guinée-Bissau     | `gw`          | `mtn-gw`                                                                            |
-| Kenya             | `ke`          | `m-pesa-ke`                                                                         |
-| Mauritanie        | `mr`          | `bankily-mr`                                                                        |
-| Niger             | `ne`          | `airtel-money-ne` / `mtn-ne` / `mauritel-ne`                                        |
-| Ouganda           | `ug`          | `mtn-ug`                                                                            |
-| Centrafrique      | `cf`          | `orange-cf`                                                                         |
-| Rwanda            | `rw`          | `mtn-rw`                                                                            |
-| Sierra Leone      | `sl`          | `africell-sl` / `orange-sl`                                                         |
-| Tanzanie          | `tz`          | `airtel-money-tz` / `m-pesa-tz` / `tigo-tz`                                         |
-| Tchad             | `td`          | `airtel-money-td` / `moov-td`                                                       |
-| Gambie            | `gm`          | `orange-gm`                                                                         |
-| Éthiopie          | `et`          | `safaricom-et`                                                                      |
+```http
+GET https://pay.moneyfusion.net/api/v1/withdraw/methods
+```
+
+**Example response:**
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "country": "Côte d'Ivoire",
+      "code": "ci",
+      "currency": "XOF",
+      "paymentMethods": [
+        { "key": "mtn-ci", "name": "MTN" },
+        { "key": "orange-money-ci", "name": "Orange" },
+        { "key": "moov-ci", "name": "Moov" },
+        { "key": "wave-ci", "name": "Wave" }
+      ]
+    }
+  ]
+}
+```
+
+- `code` → value to use for `countryCode`
+- `paymentMethods[].key` → value to use for `withdraw_mode`
 
 ---
 
