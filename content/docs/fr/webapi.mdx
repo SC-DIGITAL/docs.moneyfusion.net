@@ -68,7 +68,7 @@ const paymentData = {
   "statut": true,
   "token": "5d58823b084564",
   "message": "paiement en cours",
-  "url": "https://www.pay.moneyfusion.net/pay/6596aded36bd58823b084564"
+  "url": "https://payin.moneyfusion.net/payment/6596aded36bd58823b084564/Marchand"
 }
 ```
 
@@ -89,7 +89,7 @@ const paymentData = {
 const checkPaymentStatus = async (token) => {
   try {
     const response = await axios.get(
-      `https://www.pay.moneyfusion.net/paiementNotif/${token}`
+      `https://pay.moneyfusion.net/paiementNotif/${token}`
     );
     return response.data;
   } catch (error) {
