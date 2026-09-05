@@ -11,12 +11,24 @@ Avant de faire une requête de retrait, vous devez (Allez dans la section **Para
 
 1. **Générer une clé API** depuis votre tableau de bord Money Fusion.
 2. **Ajouter l'adresse IP de votre serveur** (qui initie la requête) dans votre dashboard.
+<Callout type="warning" title="Adresse IP fixe requise">    
+    Si votre hébergeur ne vous fournit pas d’adresse IP fixe et que votre adresse IP est susceptible de changer, vous devez contacter votre hébergeur afin de vérifier les options disponibles.
+    
+    Dans la plupart des cas, une **offre Premium/Pro** peut être nécessaire pour bénéficier d’une adresse IP fixe ou dédiée. Certains hébergeurs gratuits ou certaines offres d’entrée de gamme ne proposent pas cette fonctionnalité.
+    
+    Cela peut notamment concerner des services tels que **Vercel, Cloudflare**, les hébergements mutualisés ou les offres gratuites.
+    
+    Si votre hébergeur ne permet pas d’obtenir une IP fixe, nous vous recommandons d’utiliser un **serveur dédié ou un VPS dont vous contrôlez l’adresse IP**.
+</Callout>
 3. Inclure cette clé API dans l’en-tête des requêtes HTTP :
 
 ```md
 moneyfusion-private-key: VOTRE_CLE_API
 Content-Type: application/json
 ```
+
+
+
 
 ---
 
