@@ -1,6 +1,6 @@
 ---
 title: Php
-description: Cette bibliothèque PHP permet d’interagir facilement avec l’API de paiement **Money Fusion**. Elle facilite la **création** et la **récupération** des paiements via des requêtes HTTP sécurisées.
+description: Cette bibliothèque PHP permet d’interagir facilement avec l’API de paiement Money Fusion. Elle facilite la création et la récupération des paiements via des requêtes HTTP sécurisées.
 ---
 
 ##  Installation
@@ -33,7 +33,7 @@ $client = new PaymentClient("YOUR_API_URL");
 
 ### Créer un paiement
 
-```php
+```php title="pay.php"
 $payment = $client->createPayment(
     totalPrice: "10000",
     articles: [
@@ -50,11 +50,10 @@ $payment = $client->createPayment(
 print_r($payment);
 ```
 
-> ⚠️ **Note :**
->
-> * `webhookUrl` doit **accepter les requêtes POST**.
-> * `returnUrl` et `webhookUrl` doivent être **en HTTPS** avec un **nom de domaine valide**.
-
+<Callout type="warning" title="Note">    
+* `webhookUrl` doit **accepter les requêtes POST**.
+* `returnUrl` et `webhookUrl` doivent être **en HTTPS** avec un **nom de domaine valide**.
+</Callout>
 ---
 
 ###  Réponse attendue
@@ -72,7 +71,7 @@ print_r($payment);
 
 ###  Récupérer un paiement
 
-```php
+```php title="checkPaymentStatus.php"
 $paymentInfo = $client->getPayment("8L5teSc5TaIkP3ds9Dlx");
 print_r($paymentInfo);
 ```

@@ -27,7 +27,7 @@ client = PaymentClient(api_key_url="YOUR_API_URL")
 
 ### Créer un paiement
 
-```python
+```python title="pay.py"
 payment = client.create_payment(
     total_price="10000",
     articles=[{"name": "Article 1", "price": "5000", "quantity": 1}],
@@ -56,7 +56,7 @@ Réponse attendue :
 
 ### Récupérer un paiement
 
-```python
+```python title="checkPaymentStatus.py"
 payment_info = client.get_payment("8L5teSc5TaIkP3ds9Dlx")
 print(payment_info)
 ```

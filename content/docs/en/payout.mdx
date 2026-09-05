@@ -11,6 +11,15 @@ Before making a withdrawal request, you must (go to the **Settings** section):
 
 1. **Generate an API key** from your Money Fusion dashboard.
 2. **Add your server's IP address** (the one sending the request) in the dashboard.
+<Callout type="warning" title="Fixed IP Address Required">    
+    If your hosting provider does not provide you with a fixed IP address and your IP address may change, you should contact your hosting provider to check which options are available.
+    
+    In most cases, you may need to upgrade to a **Premium/Pro plan** to obtain a fixed or dedicated IP address. Some free hosting providers or entry-level plans do not offer this feature.
+    
+    This may apply to services such as **Vercel, Cloudflare**, shared hosting providers, or free hosting plans.
+    
+    If your hosting provider does not allow you to obtain a fixed IP address, we recommend using a **dedicated server or VPS where you have control over the server's IP address**.
+</Callout>
 3. Include this API key in the HTTP request headers:
 
 ```md
