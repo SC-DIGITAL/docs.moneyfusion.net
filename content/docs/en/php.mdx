@@ -1,0 +1,150 @@
+---
+title: Php
+description: This PHP library allows you to easily interact with the **Money Fusion Payment API**. It simplifies **creating** and **retrieving** payments via secure HTTP requests.
+---
+
+##  Installation
+
+Install the library via **Composer**:
+
+```bash
+composer require assemien-dev/money-fusion-php
+```
+
+---
+
+##  Usage
+
+### Import
+
+```php
+use MoneyFusion\PaymentClient;
+```
+
+---
+
+### Initialize the client
+
+```php
+$client = new PaymentClient("YOUR_API_URL");
+```
+
+---
+
+### Create a payment
+
+```php
+$payment = $client->createPayment(
+    totalPrice: "10000",
+    articles: [
+        ["name" => "Article 1", "price" => "5000", "quantity" => 1]
+    ],
+    numeroSend: "0101010101",
+    nomClient: "assemienDev",
+    userId: 1,
+    orderId: 123,
+    returnUrl: "https://your-domain.com/callback",
+    webhookUrl: "https://your-domain.com/my-webhook-url"
+);
+
+print_r($payment);
+```
+
+> ⚠️ **Note:**
+>
+> * `webhookUrl` must **accept POST requests**.
+> * Both `returnUrl` and `webhookUrl` must be **HTTPS** with a **valid domain name**.
+
+---
+
+### Expected Response
+
+```json
+{
+    "statut": true,
+    "token": "f5EJ33JYmxqosi8BvaEt",
+    "message": "payment in progress",
+    "url": "https://www.pay.moneyfusion.net/pay/f5EJ33JYmxqosi8BvaEt"
+}
+```
+
+---
+
+### Retrieve a payment
+
+```php
+$paymentInfo = $client->getPayment("8L5teSc5TaIkP3ds9Dlx");
+print_r($paymentInfo);
+```
+
+---
+
+### Expected Response
+
+```json
+{
+    "statut": true,
+    "data": {
+        "_id": "6748d365967cb4766fdd1616",
+        "tokenPay": "8L5teSc5TaIkP3ds9Dlx",
+        "numeroSend": "None",
+        "nomclient": "assemienDev",
+        "personal_Info": [{"userId": 1, "orderId": 123}],
+        "numeroTransaction": "",
+        "Montant": 475,
+        "frais": 25,
+        "statut": "paid",
+        "moyen": "card",
+        "return_url": "https://your-domain.com/callback",
+        "createdAt": "2024-11-28T20:32:37.037Z"
+    },
+    "message": "payment details"
+}
+```
+
+---
+
+##  Full Example
+
+```php
+require 'vendor/autoload.php';
+
+use MoneyFusion\PaymentClient;
+
+$client = new PaymentClient("https://api.moneyfusion.net/api/create-payment");
+
+try {
+    $payment = $client->createPayment(
+        totalPrice: "10000",
+        articles: [
+            ["name" => "Article 1", "price" => "5000", "quantity" => 1]
+        ],
+        numeroSend: "0101010101",
+        nomClient: "assemienDev",
+        userId: 1,
+        orderId: 123,
+        returnUrl: "https://your-domain.com/callback",
+        webhookUrl: "https://your-domain.com/webhook"
+    );
+
+    print_r($payment);
+
+    // Example: retrieve payment after confirmation
+    $paymentInfo = $client->getPayment($payment['token']);
+    print_r($paymentInfo);
+
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+```
+
+---
+
+## Available Methods
+
+| Method            | Description                                       |
+| ----------------- | ------------------------------------------------- |
+| `createPayment()` | Creates a new payment with the order details      |
+| `getPayment()`    | Retrieves payment information by its unique token |
+
+---
