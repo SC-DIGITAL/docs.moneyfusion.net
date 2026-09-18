@@ -26,15 +26,13 @@ Log in to your domain provider (GoDaddy, Namecheap, OVH, etc.), then open:
 
 You must add **two required DNS records**:
 
-| Type  | Name (Host) | Value          |
-|-------|------------|-----------------|
-| A     | @          | 135.181.19.210   |
-| CNAME | www        | moneyfusion.net |
+| Type  | Nom (Host)                 | Valeur                 |
+|-------|----------------------------|------------------------|
+| CNAME | yourdomain.com ( ou @)     | custom.moneyfusion.net |
 
 ### Explanation
 
-- **A (@)** → connects your root domain (`yourdomain.com`) to our server  
-- **CNAME (www)** → redirects `www.yourdomain.com` to your root domain  
+- **CNAME ( yourdomain.com )** → redirects `custom.moneyfusion.net` to our root domain  
 
 <Callout type="warning">
 Remove any existing <strong>@</strong> and <strong>www</strong> records before adding the new ones.
@@ -78,7 +76,6 @@ The system automatically checks that your domain points to <strong>135.181.19.21
 
 ## Common Issues
 
-- Incorrect IP address in the **A record**  
-- Missing or incorrect **CNAME www**  
+- Missing or incorrect **CNAME**  
 - Conflict with existing DNS records  
 - DNS propagation not completed
