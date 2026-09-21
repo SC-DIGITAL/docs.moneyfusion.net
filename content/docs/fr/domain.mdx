@@ -25,15 +25,14 @@ Connectez-vous à votre fournisseur de domaine (GoDaddy, Namecheap, OVH, etc.), 
 
 Vous devez ajouter **deux enregistrements DNS** obligatoires :
 
-| Type  | Nom (Host) | Valeur         |
-|-------|-----------|-----------------|
-| A     | @         | 135.181.19.210   |
-| CNAME | www       | moneyfusion.net |
+| Type  | Nom (Host)                 | Valeur                 |
+|-------|----------------------------|------------------------|
+| CNAME | mondomain.com ( ou @)      | custom.moneyfusion.net |
+
 
 ### Explications
 
-- **A (@)** → connecte `mondomaine.com` à notre serveur  
-- **CNAME (www)** → redirige `www.mondomaine.com` vers le domaine principal  
+- **CNAME (mondomaine.com)** → redirige `custom.moneyfusion.net` vers le domaine principal  
 
 <Callout type="warning">
 Supprimez tous les anciens enregistrements <strong>@</strong> et <strong>www</strong> avant d’ajouter les nouveaux.
@@ -73,14 +72,13 @@ La propagation DNS peut prendre de quelques minutes à <strong>24 heures</strong
 - ✅ Connecté automatiquement à votre boutique  
 
 <Callout type="success">
-Le système vérifie automatiquement que votre domaine pointe vers <strong>135.181.19.210</strong>.
+Le système vérifie automatiquement que votre domaine pointe vers <strong>custom.moneyfusion.net</strong>.
 </Callout>
 
 ---
 
 ## Problèmes courants
 
-- Mauvaise IP dans l’enregistrement **A**
-- **CNAME www** absent ou incorrect
+- **CNAME ** absent ou incorrect
 - Conflit avec un ancien enregistrement
 - Propagation DNS non terminée
