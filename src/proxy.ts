@@ -1,10 +1,13 @@
-import { i18n } from '@/lib/i18n';
-import { createI18nMiddleware } from 'fumadocs-core/i18n/middleware';
+import { createI18nMiddleware } from "fumadocs-core/i18n/middleware";
+import { i18n } from "@/lib/i18n";
 
 export default createI18nMiddleware(i18n);
 
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
+  // Matcher ignoring `/_next/`, `/api/` and the standalone LLM routes,
+  // which live outside of the localized `[lang]` segment.
   // You may need to adjust it to ignore static assets in `/public` folder
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|llms\\.txt|llms-full\\.txt).*)",
+  ],
 };

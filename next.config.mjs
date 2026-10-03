@@ -15,6 +15,14 @@ const config = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/:lang/:slug*.md",
+        destination: "/:lang/llms.mdx/:slug*/content.md",
+      },
+    ];
+  },
 };
 
 export default withMDX(config);
