@@ -1,12 +1,12 @@
 import "@/app/global.css";
-import { i18n } from "@/lib/i18n";
 import { defineI18nUI } from "fumadocs-ui/i18n";
 import { RootProvider } from "fumadocs-ui/provider/next";
 import { Inter } from "next/font/google";
-import { Metadata } from "next/types";
+import type { Metadata } from "next/types";
+import { i18n } from "@/lib/i18n";
 
 const inter = Inter({
-  subsets: ["latin"]
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -56,23 +56,21 @@ export const metadata: Metadata = {
 };
 
 const { provider } = defineI18nUI(i18n, {
-  translations: {
-    en: {
-      displayName: "English",
-    },
-    fr: {
-      displayName: "Français",
-      search: "Rechercher",
-      searchNoResult: "Aucun résultat",
-      toc: "Table des matieres",
-      tocNoHeadings: "Aucun titre",
-      lastUpdate: "Dernière mise à jour",
-      chooseLanguage: "Choisir une langue",
-      nextPage: "Page suivante",
-      previousPage: "Page precedente",
-      chooseTheme: "Choisir un thème",
-      editOnGithub: "Editer sur Github",
-    },
+  en: {
+    displayName: "English",
+  },
+  fr: {
+    displayName: "Français",
+    search: "Rechercher",
+    searchNoResult: "Aucun résultat",
+    toc: "Table des matieres",
+    tocNoHeadings: "Aucun titre",
+    lastUpdate: "Dernière mise à jour",
+    chooseLanguage: "Choisir une langue",
+    nextPage: "Page suivante",
+    previousPage: "Page precedente",
+    chooseTheme: "Choisir un thème",
+    editOnGithub: "Editer sur Github",
   },
 });
 
