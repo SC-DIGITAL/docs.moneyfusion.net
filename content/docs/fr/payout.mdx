@@ -1,6 +1,6 @@
 ---
 title: Payout
-description: Cette documentation décrit comment intégrer l'API de retrait de Money Fusion ainsi que la gestion des webhooks liés aux événements de retrait.
+description: Cette documentation décrit comment intégrer l'API de retrait de Money Fusion ainsi que la gestion des webhooks ou de l'IPN liés aux événements de retrait.
 ---
 
 ## Authentification
@@ -72,7 +72,7 @@ Content-Type: application/json
 Le champ `tokenPay` est un identifiant unique généré lors de l’initiation d’un retrait.  
 Il permet de suivre et vérifier la transaction. Ce token doit être conservé côté client ou serveur car il sera réutilisé pour :
 
-- Valider et identifier la transaction dans les notifications envoyées par webhook.
+- Valider et identifier la transaction dans les notifications envoyées par webhook ou les responses de l'IPN.
 - Faire le lien entre la demande initiale et son statut final.
 
 Ce token garantit ainsi la traçabilité et la sécurité du processus de retrait.
@@ -122,6 +122,78 @@ GET https://pay.moneyfusion.net/api/v1/withdraw/methods
 
 - `code` → valeur à utiliser pour `countryCode`
 - `paymentMethods[].key` → valeur à utiliser pour `withdraw_mode`
+
+
+
+---
+## Notification Instantanée de Paiement (`IPN`)
+
+### Vérification de l'état des retraits
+
+**GET** `https://pay.moneyfusion.net/api/v1/payout/check-status/${token}`
+
+
+### Exemple de Réponses
+
+#### En cas de Success
+
+```json
+{
+  "success": true,
+  "data": {
+    "tokenPay": "6a983c2c23a361c193fc21d4",
+    "status": "success",
+    "phone": "0700101213",
+    "method": "mtn-ci",
+    "amount": 226,
+    "createdAt": "2026-09-02T15:09:32.847Z",
+  }
+}
+```
+
+#### En cas d'échec
+
+```json
+{
+  "success": true,
+  "data": {
+    "tokenPay": "6a9962270f45c742241eac01",
+    "status": "failed",
+    "phone": "0700101213",
+    "method": "mtn-ci",
+    "amount": 205,
+    "createdAt": "2026-09-03T12:03:51.685Z",
+  }
+}
+```
+#### Mauvais token
+
+```json
+{
+  "success": false,
+  "message": "Withdrawal not found"
+}
+```
+
+
+### Types de statut du retrait
+
+|  Status     |  Description                            |
+|-------------|-----------------------------------------|
+|  `pending`  |  Le retrait est en cours de traitement  |
+|  `success`  |  Le retrait a été effectué avec succès  |
+|  `failed`   |  Le retrait a échoué ou a été annulé    |
+
+### Champs de données de la réponse d'état
+
+| Champ           | Type                  | Description                      |
+| --------------- | --------------------- | -------------------------------- |
+| `status`        | Chaîne de caractères  | État des retraits                |
+| `tokenPay`      | Chaîne de caractères  | token de Retrait                 |
+| `phone`         | Chaîne de caractères  | Numéro de téléphone du retrait   |
+| `method`        | Chaîne de caractères  | Mode de paiement                 |
+| `amount`        | Nombre                | Montant de la transaction        |
+| `createdAt`     | Chaîne de caractères  | Date de d'initiation du retrait  |
 
 ---
 
