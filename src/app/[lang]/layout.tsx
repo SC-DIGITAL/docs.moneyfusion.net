@@ -1,4 +1,5 @@
 import "@/app/global.css";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { defineI18nUI } from "fumadocs-ui/i18n";
 import { RootProvider } from "fumadocs-ui/provider/next";
 import { Inter } from "next/font/google";
@@ -79,12 +80,14 @@ export default async function Layout({
   children,
 }: LayoutProps<"/[lang]">) {
   const lang = (await params).lang;
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 
   return (
     <html lang={lang} className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen" suppressHydrationWarning>
         <RootProvider i18n={provider(lang)}>{children}</RootProvider>
       </body>
+      {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
     </html>
   );
 }
